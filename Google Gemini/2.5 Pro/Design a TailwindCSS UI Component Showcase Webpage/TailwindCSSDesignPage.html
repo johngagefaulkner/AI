@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind CSS Design Page</title>
+    
+    <!-- 1. Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Configuration for Tailwind (optional, but good for custom fonts) --><script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- 3. Load Inter Font --><link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+    <!-- 4. Add custom styles --><style>
+        /* A little extra style for a smoother experience */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @supports (font-variation-settings: normal) {
+            body { font-family: 'Inter var', sans-serif; }
+        }
+        /* Style for custom select arrow */
+        .custom-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        .dark .custom-select {
+             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23d1d5db' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- Header --><header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-slate-900 dark:text-white">UI Showcase</h1>
+            <button id="theme-toggle-button" class="p-2 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-300 dark:text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Application List Card (was selected) --><div class="md:col-span-2 p-6 bg-white dark:bg-slate-800/50 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 text-slate-900 dark:text-white">Application List</h2>
+                <div id="app-list-container" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <!-- App items will be injected here --></div>
+            </div>
+
+            <!-- Application List (v2) - New Section --><div class="md:col-span-2 p-6 bg-white dark:bg-slate-800/50 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 text-slate-900 dark:text-white">Application List (v2)</h2>
+                <div id="app-list-v2-container" class="divide-y divide-slate-200 dark:divide-slate-700">
+                    <!-- App items will be injected here --></div>
+            </div>
+
+            <!-- Buttons Card --><div class="p-6 bg-white dark:bg-slate-800/50 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 text-slate-900 dark:text-white">Buttons</h2>
+                <div class="flex flex-wrap gap-4 items-center">
+                    <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-colors">Primary</button>
+                    <button class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-opacity-75 transition-colors">Secondary</button>
+                    <button class="px-4 py-2 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-colors">Text</button>
+                </div>
+            </div>
+
+            <!-- Form Controls Card --><div class="p-6 bg-white dark:bg-slate-800/50 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 text-slate-900 dark:text-white">Form Controls</h2>
+                <div class="space-y-4">
+                    <input type="text" placeholder="Your name..." class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="app-select" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 custom-select">
+                        <!-- Options will be injected here --></select>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" class="h-5 w-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                        <span>Agree to terms</span>
+                    </label>
+                </div>
+            </div>
+
+             <!-- Dialog Card --><div class="md:col-span-2 p-6 bg-white dark:bg-slate-800/50 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 text-slate-900 dark:text-white">Dialog</h2>
+                <p class="mb-4">Click the button to open a modal dialog with a list of applications.</p>
+                <button id="open-dialog-button" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-colors">Open Dialog</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Dialog / Modal --><div id="dialog" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-md mx-auto rounded-lg shadow-xl p-6">
+            <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white mb-4">Office Applications</h3>
+            <div id="dialog-list-container" class="space-y-2">
+                <!-- Dialog list will be injected here --></div>
+            <div class="mt-6">
+                <button id="close-dialog-button" type="button" class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-800 focus:ring-blue-500">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Detail Dialog --><div id="app-detail-dialog" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-2xl mx-auto rounded-lg shadow-xl overflow-hidden relative">
+            <!-- Close button for the detail dialog --><button id="close-app-detail-dialog-button" class="absolute top-3 right-3 p-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- Dialog Content --><div class="flex flex-col h-full">
+                <!-- Header Image --><div id="app-detail-header-image" class="w-full h-48 bg-cover bg-center" style="background-image: url('https://via.placeholder.com/800x200');"></div>
+                
+                <div class="p-6 flex-grow overflow-y-auto">
+                    <h3 id="app-detail-name" class="text-3xl font-bold text-gray-900 dark:text-white mb-2">App Name</h3>
+                    <p id="app-detail-summary" class="text-slate-600 dark:text-slate-300 mb-6"></p>
+
+                    <!-- Detailed Description --><div class="mb-6">
+                        <h4 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">Description</h4>
+                        <p id="app-detail-description" class="text-slate-700 dark:text-slate-400 leading-relaxed"></p>
+                    </div>
+
+                    <!-- App Version Info --><div class="mb-6">
+                        <h4 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">App Version Info</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-slate-700 dark:text-slate-400">
+                            <div><strong>Version:</strong> <span id="app-detail-version"></span></div>
+                            <div><strong>Release Date:</strong> <span id="app-detail-release-date"></span></div>
+                            <div class="sm:col-span-2"><strong>Changelog:</strong> <span id="app-detail-changelog"></span></div>
+                            <div><strong>File Size:</strong> <span id="app-detail-file-size"></span></div>
+                            <div><strong>Downloads:</strong> <span id="app-detail-download-count"></span></div>
+                            <div class="sm:col-span-2"><strong>Rating:</strong> <span id="app-detail-rating"></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Download Button --><div class="p-6 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700">
+                    <button class="w-full px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-colors">
+                        Download App
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 5. JavaScript Logic --><script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- THEME TOGGLE LOGIC ---
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            // Function to apply theme
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                }
+            };
+            
+            // Check for saved theme in localStorage or system preference
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(savedTheme);
+
+            themeToggleButton.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                const newTheme = isDark ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            });
+
+
+            // --- DYNAMIC COMPONENT LOGIC ---
+            const sampleData = [
+                { 
+                    name: 'Excel', 
+                    icon: 'https://res-1.cdn.office.net/shellux/excel_24x.ac6d4afa4047500ba1f65fda92d60bf6.svg', 
+                    color: '#107c10', 
+                    status: 'Online',
+                    headerImage: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RW16x9',
+                    summary: 'Spreadsheets, data analysis, and visualization tools.',
+                    description: 'Microsoft Excel is a spreadsheet developed by Microsoft for Windows, macOS, Android, and iOS. It features calculation, graphing tools, pivot tables, and a macro programming language called Visual Basic for Applications (VBA). Excel forms part of the Microsoft 365 suite of software. It is widely used in various industries for data organization, financial modeling, and business analytics. Its powerful features allow users to perform complex calculations, create professional-looking charts, and manage large datasets efficiently.',
+                    version: '16.0.17029.20108',
+                    releaseDate: 'October 26, 2023',
+                    changelog: 'Improved data import, new XLOOKUP features, enhanced dark mode support.',
+                    fileSize: '450 MB',
+                    downloadCount: '500M+',
+                    rating: '4.7/5 (2.5M reviews)'
+                },
+                { 
+                    name: 'Forms', 
+                    icon: 'https://res-1.cdn.office.net/shellux/forms_24x.66cb19eec2cafe32e255d336b8afb2b8.svg', 
+                    color: '#008272', 
+                    status: 'Last seen 3h ago',
+                    headerImage: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4tB3E',
+                    summary: 'Create surveys, quizzes, and polls with ease.',
+                    description: 'Microsoft Forms is an online survey and quiz creation tool, part of Microsoft 365. It allows users to create surveys, quizzes, polls, and registrations. Data can be exported to Excel for analysis. Forms is designed to be intuitive, making it easy for educators and businesses to gather feedback, assess student knowledge, and organize events. It supports real-time results, conditional branching, and various question types to ensure comprehensive data collection.',
+                    version: '2.5.1',
+                    releaseDate: 'September 15, 2023',
+                    changelog: 'Added new theme options, improved collaboration features, bug fixes.',
+                    fileSize: 'Web App',
+                    downloadCount: '100M+',
+                    rating: '4.5/5 (800K reviews)'
+                },
+                { 
+                    name: 'OneDrive', 
+                    icon: 'https://res-1.cdn.office.net/shellux/onedrive_24x.6907c580e2834a8524b997a950889db3.svg', 
+                    color: '#0078d4', 
+                    status: 'Online',
+                    headerImage: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE2tZ2M',
+                    summary: 'Cloud storage and file sharing for personal and business use.',
+                    description: 'Microsoft OneDrive is a file hosting service and synchronization service operated by Microsoft as part of its web version of Office. It provides cloud storage, file synchronization, personal cloud, and digital asset sharing capabilities. OneDrive integrates deeply with Windows and Microsoft 365, allowing seamless access to files across devices. It offers robust security features, version history, and collaborative tools, making it an essential service for both individuals and organizations.',
+                    version: '23.232.1105.0001',
+                    releaseDate: 'November 5, 2023',
+                    changelog: 'Enhanced file versioning, improved sync performance, new sharing options.',
+                    fileSize: '200 MB',
+                    downloadCount: '1B+',
+                    rating: '4.6/5 (5M reviews)'
+                },
+                { 
+                    name: 'OneNote', 
+                    icon: 'https://res-1.cdn.office.net/shellux/onenote_24x.7452bd3c5800470c9e65f4bd782b522c.svg', 
+                    color: '#7719aa', 
+                    status: 'Last seen 3h ago',
+                    headerImage: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE2tyC0',
+                    summary: 'Digital notebook for ideas, notes, and organization.',
+                    description: 'Microsoft OneNote is a digital notebook program for freely gathering information and multi-user collaboration. It collects user notes (handwritten or typed), drawings, screen clippings, and audio commentaries. Notes can be shared with other OneNote users over the Internet or a network. OneNote is highly versatile, allowing users to organize information in notebooks, sections, and pages, making it ideal for students, professionals, and anyone needing to keep track of diverse information.',
+                    version: '16.0.17029.20108',
+                    releaseDate: 'October 20, 2023',
+                    changelog: 'Improved ink-to-text conversion, better search functionality, dark mode enhancements.',
+                    fileSize: '380 MB',
+                    downloadCount: '300M+',
+                    rating: '4.4/5 (1.8M reviews)'
+                },
+                { 
+                    name: 'PowerPoint', 
+                    icon: 'https://res-1.cdn.office.net/shellux/powerpoint_24x.f5ae1926e84e5e5ed1118f49b95419bf.svg', 
+                    color: '#d13438', 
+                    status: 'Online',
+                    headerImage: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RW3K63',
+                    summary: 'Create impactful presentations and slideshows.',
+                    description: 'Microsoft PowerPoint is a powerful presentation software, also part of the Microsoft 365 suite. It enables users to create engaging slideshows with text, graphics, videos, and animations. PowerPoint is an industry standard for business presentations, academic lectures, and personal projects. Its intuitive interface and vast array of features, including presenter coach and live captions, help users deliver compelling and professional presentations.',
+                    version: '16.0.17029.20108',
+                    releaseDate: 'November 1, 2023',
+                    changelog: 'New design templates, enhanced animation options, improved collaboration features.',
+                    fileSize: '480 MB',
+                    downloadCount: '600M+',
+                    rating: '4.8/5 (3M reviews)'
+                },
+                { 
+                    name: 'SharePoint', 
+                    icon: 'https://res-1.cdn.office.net/shellux/sharepoint_24x.f022265eeacef09d5c1613536ac9cab3.svg', 
+                    color: '#00788c', 
+                    status: 'Last seen 3h ago',
+                    headerImage: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4u7Hw',
+                    summary: 'Intranet, content management, and team collaboration.',
+                    description: 'Microsoft SharePoint is a web-based collaborative platform that integrates with Microsoft Office. It is primarily sold as a document management and storage system, but the product is highly configurable and its usage varies substantially among organizations. SharePoint allows businesses to create internal websites, manage documents, store and share files, and automate workflows. It serves as a central hub for team collaboration, enabling secure and efficient information sharing.',
+                    version: '2023.1.5',
+                    releaseDate: 'October 28, 2023',
+                    changelog: 'Improved site analytics, new web part options, better integration with Teams.',
+                    fileSize: 'Web Service',
+                    downloadCount: 'N/A',
+                    rating: '4.2/5 (700K reviews)'
+                },
+                { 
+                    name: 'Teams', 
+                    icon: 'https://res-1.cdn.office.net/shellux/teams_24x.0565326570f7b039ec8c6e5bbcf43f5c.svg', 
+                    color: '#5b5fc7', 
+                    status: 'Online',
+                    headerImage: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4tF7E',
+                    summary: 'Chat, meetings, calling, and collaboration in one app.',
+                    description: 'Microsoft Teams is a proprietary business communication platform developed by Microsoft, as part of the Microsoft 365 family of products. Teams primarily competes with the similar service Slack, offering workplace chat, video meetings, file storage, and application integration. It is a central hub for teamwork, providing a unified experience for communication and collaboration, making it indispensable for hybrid work environments.',
+                    version: '1.6.00.33567',
+                    releaseDate: 'November 8, 2023',
+                    changelog: 'New meeting layouts, improved notification settings, performance optimizations.',
+                    fileSize: '150 MB',
+                    downloadCount: '1.5B+',
+                    rating: '4.6/5 (6M reviews)'
+                },
+                { 
+                    name: 'Word', 
+                    icon: 'https://res-1.cdn.office.net/shellux/word_24x.bc4881a9a215b16d6b292284282fa572.svg', 
+                    color: '#2b579a', 
+                    status: 'Last seen 3h ago',
+                    headerImage: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4thS7',
+                    summary: 'Create and edit documents with powerful tools.',
+                    description: 'Microsoft Word is a word processor developed by Microsoft. It was first released on October 25, 1983. It is a key component of the Microsoft Office suite. Word is widely used for creating, editing, viewing, and sharing documents. Its extensive features include advanced formatting, spell check, grammar check, collaboration tools, and various templates, making it an essential tool for students, professionals, and writers worldwide.',
+                    version: '16.0.17029.20108',
+                    releaseDate: 'October 25, 2023',
+                    changelog: 'Improved accessibility features, new citation styles, enhanced cloud collaboration.',
+                    fileSize: '420 MB',
+                    downloadCount: '800M+',
+                    rating: '4.7/5 (4M reviews)'
+                }
+            ];
+
+            const appListContainer = document.getElementById('app-list-container');
+            const appListV2Container = document.getElementById('app-list-v2-container');
+            const appSelect = document.getElementById('app-select');
+            const dialogListContainer = document.getElementById('dialog-list-container');
+            const appDetailDialog = document.getElementById('app-detail-dialog');
+            const closeAppDetailDialogButton = document.getElementById('close-app-detail-dialog-button');
+
+
+            // Clear containers
+            appListContainer.innerHTML = '';
+            appSelect.innerHTML = '';
+            dialogListContainer.innerHTML = '';
+            
+            // Populate App List (original)
+            sampleData.forEach(item => {
+                const appItem = document.createElement('div');
+                appItem.className = 'flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50 cursor-pointer transition-colors';
+                appItem.innerHTML = `
+                    <img src="${item.icon}" alt="${item.name}" class="w-6 h-6">
+                    <span class="font-medium">${item.name}</span>
+                `;
+                appListContainer.appendChild(appItem);
+            });
+
+            // Populate App List (v2) - New Section
+            sampleData.forEach(item => {
+                const v2Item = document.createElement('div');
+                v2Item.className = 'flex items-center py-4 px-2 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors cursor-pointer';
+                v2Item.innerHTML = `
+                    <div class="flex-shrink-0 mr-4">
+                        <img class="h-10 w-10 rounded-md" src="${item.icon}" alt="${item.name} icon">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-slate-900 dark:text-white">${item.name}</p>
+                        <p class="text-sm text-slate-500 truncate dark:text-slate-400">${item.name.toLowerCase().replace(/\s/g, '')}@example.com</p>
+                    </div>
+                    <div class="hidden sm:flex flex-col items-end ml-auto text-sm">
+                        <p class="text-slate-900 dark:text-white">${item.name} App</p>
+                        <div class="flex items-center text-slate-500 dark:text-slate-400">
+                            ${item.status === 'Online' ? 
+                                `<span class="h-2 w-2 rounded-full bg-green-500 mr-1"></span><span class="text-xs">Online</span>` : 
+                                `<span class="text-xs">${item.status}</span>`}
+                        </div>
+                    </div>
+                `;
+                v2Item.addEventListener('click', () => openAppDetailDialog(item)); // Add click listener
+                appListV2Container.appendChild(v2Item);
+            });
+            
+            // Populate Select options
+            sampleData.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.name;
+                option.textContent = item.name;
+                appSelect.appendChild(option);
+            });
+
+            // Populate Dialog List
+            sampleData.forEach(item => {
+                const dialogItem = document.createElement('div');
+                dialogItem.className = 'flex items-center space-x-3 p-2';
+                 dialogItem.innerHTML = `
+                    <img src="${item.icon}" alt="${item.name}" class="w-6 h-6">
+                    <span>${item.name}</span>
+                `;
+                dialogListContainer.appendChild(dialogItem);
+            });
+
+            // --- DIALOG LOGIC ---
+            const dialog = document.getElementById('dialog');
+            const openDialogButton = document.getElementById('open-dialog-button');
+            const closeDialogButton = document.getElementById('close-dialog-button');
+
+            const openDialog = () => dialog.classList.remove('hidden');
+            const closeDialog = () => dialog.classList.add('hidden');
+
+            openDialogButton.addEventListener('click', openDialog);
+            closeDialogButton.addEventListener('click', closeDialog);
+            // Close dialog if clicking on the backdrop
+            dialog.addEventListener('click', (event) => {
+                if (event.target === dialog) {
+                    closeDialog();
+                }
+            });
+
+            // --- APP DETAIL DIALOG LOGIC ---
+            const appDetailHeaderImage = document.getElementById('app-detail-header-image');
+            const appDetailName = document.getElementById('app-detail-name');
+            const appDetailSummary = document.getElementById('app-detail-summary');
+            const appDetailDescription = document.getElementById('app-detail-description');
+            const appDetailVersion = document.getElementById('app-detail-version');
+            const appDetailReleaseDate = document.getElementById('app-detail-release-date');
+            const appDetailChangelog = document.getElementById('app-detail-changelog');
+            const appDetailFileSize = document.getElementById('app-detail-file-size');
+            const appDetailDownloadCount = document.getElementById('app-detail-download-count');
+            const appDetailRating = document.getElementById('app-detail-rating');
+            
+            const openAppDetailDialog = (app) => {
+                appDetailHeaderImage.style.backgroundImage = `url('${app.headerImage}')`;
+                appDetailName.textContent = app.name;
+                appDetailSummary.textContent = app.summary;
+                appDetailDescription.textContent = app.description;
+                appDetailVersion.textContent = app.version;
+                appDetailReleaseDate.textContent = app.releaseDate;
+                appDetailChangelog.textContent = app.changelog;
+                appDetailFileSize.textContent = app.fileSize;
+                appDetailDownloadCount.textContent = app.downloadCount;
+                appDetailRating.textContent = app.rating;
+                appDetailDialog.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden'); // Prevent scrolling
+            };
+
+            const closeAppDetailDialog = () => {
+                appDetailDialog.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden'); // Re-enable scrolling
+            };
+
+            closeAppDetailDialogButton.addEventListener('click', closeAppDetailDialog);
+            appDetailDialog.addEventListener('click', (event) => {
+                if (event.target === appDetailDialog) {
+                    closeAppDetailDialog();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
